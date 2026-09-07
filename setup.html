@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ur-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>iPhone Agent — Setup Helper</title>
+<style>
+:root{--bg:#f5f5f7;--surface:#fff;--ink:#1d1d1f;--muted:#6e6e73;--border:#d2d2d7;--accent:#0071e3;--accent-ink:#0066cc;--ok:#1d7a36}
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;background:var(--bg);color:var(--ink);margin:0;font-size:15px;line-height:1.55}
+.wrap{max-width:430px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 18px 40px}
+h1{font-family:-apple-system,"SF Pro Display",sans-serif;font-size:22px;letter-spacing:-.01em;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13.5px;margin-bottom:18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
+.lbl{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.val{font-family:ui-monospace,Menlo,monospace;font-size:13.5px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 12px;word-break:break-all}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border-radius:999px;background:var(--accent);color:#fff;font-weight:600;font-size:14px;border:0;cursor:pointer;width:100%;margin-top:10px}
+.btn.quiet{background:var(--surface);color:var(--accent-ink);border:1px solid var(--accent)}
+.btn.go{background:#1d1d1f}
+.done{color:var(--ok);font-weight:600}
+ol{padding-left:20px;color:var(--muted);font-size:13.5px}
+ol li{margin:6px 0}
+a{color:var(--accent-ink)}
+.foot{text-align:center;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;margin-top:22px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>iPhone Agent — Setup Helper</h1>
+  <p class="sub">Har value ke saath COPY button hai — tap karein, phir app ke Settings mein paste karein.</p>
+
+  <div class="card">
+    <div class="lbl">1 · API base URL</div>
+    <div class="val" id="v1">https://openrouter.ai/api/v1</div>
+    <button class="btn" data-copy="v1">Copy karein</button>
+  </div>
+
+  <div class="card">
+    <div class="lbl">2 · Model</div>
+    <div class="val" id="v2">meta-llama/llama-3.3-70b-instruct:free</div>
+    <button class="btn" data-copy="v2">Copy karein</button>
+  </div>
+
+  <div class="card">
+    <div class="lbl">3 · API key — yeh aap khud dalein</div>
+    <p style="color:var(--muted);font-size:13px;margin:0 0 6px">Key kisi page par copy button se nahi milti — aapne OpenRouter par banai thi. Usay <b>sirf app ke Settings field</b> mein paste karein (chat mein kabhi nahi).</p>
+    <a class="btn quiet" href="https://openrouter.ai/keys" target="_blank" rel="noopener">OpenRouter keys page kholein</a>
+  </div>
+
+  <div class="card">
+    <div class="lbl">Phir yeh 4 steps</div>
+    <ol>
+      <li>App kholein → <b>Settings</b> tab</li>
+      <li>Base URL + key + model paste karein → <b>Save karein</b></li>
+      <li><b>Test connection</b> — green message aayega</li>
+      <li>Yeh page Apple ki <b>Share → Add to Home Screen</b> se install karein</li>
+    </ol>
+    <a class="btn go" href="./V4%20iPhone%20Agent-Interactive%20Prototype.html">App kholein</a>
+  </div>
+
+  <p class="foot">IPHONE AGENT · SETUP HELPER · V4</p>
+</div>
+<script>
+document.querySelectorAll("[data-copy]").forEach(function(b){
+  b.addEventListener("click", function(){
+    var txt = document.getElementById(b.dataset.copy).textContent.trim();
+    function ok(){ b.textContent="Copy ho gaya ✓"; b.classList.add("done"); setTimeout(function(){ b.textContent="Copy karein"; b.classList.remove("done"); }, 1800); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(ok).catch(fallback); } else { fallback(); }
+    function fallback(){ var t=document.createElement("textarea"); t.value=txt; t.style.position="fixed"; t.style.opacity="0"; document.body.appendChild(t); t.select(); try{ document.execCommand("copy"); ok(); }catch(e){ b.textContent="Manually select kar ke copy karein"; } document.body.removeChild(t); }
+  });
+});
+</script>
+</body>
+</html>
