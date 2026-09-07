@@ -1,0 +1,134 @@
+{
+  "name": "USA Onboarding Agent — KYC Handover Flow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "onboarding-intake",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Intake Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-200, 0],
+      "webhookId": "onboarding-intake"
+    },
+    {
+      "parameters": {
+        "jsCode": "const forbidden = ['ssn', 'itin', 'passport', 'idphoto', 'selfie', 'bankpassword', 'password', 'otp', '2fa'];\nconst body = $input.first().json.body || {};\nconst clean = {};\nfor (const [key, value] of Object.entries(body)) {\n  const k = key.toLowerCase().replace(/[^a-z]/g, '');\n  if (forbidden.some((f) => k.includes(f))) {\n    clean[key] = '[CLIENT-ONLY]';\n  } else {\n    clean[key] = value;\n  }\n}\nreturn [{ json: { profile: clean, instruction: 'Run the USA business onboarding workflow for the attached data pack. Validate the pack, classify risk, research suitable banks and processors, then prefill the best-fit application. The moment you reach identity verification or any attestation, end your reply with the exact marker HANDOVER_REQUIRED followed by a client handover note.' } }];"
+      },
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "Guardrail Scan",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [20, 0]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.instruction }}\n\nCLIENT DATA PACK (JSON):\n{{ JSON.stringify($json.profile, null, 2) }}",
+        "options": {
+          "systemMessage": "You are a USA Business Onboarding operations agent. Hard rules: (1) Never collect, repeat, store, or enter SSN/ITIN, ID photos, selfies, bank passwords, or OTP codes. (2) Data entry only: never check certification boxes, never accept terms of service, never e-sign, never click final submit — those are the client's actions. (3) Stop at identity verification / KYC: end your reply with the exact marker HANDOVER_REQUIRED followed by a handover note containing provider name, exact resume point, numbered client steps, and documents to prepare. (4) Verify provider requirements against current official sources and state the date checked; never guarantee approval. (5) Redact any sensitive values that appear in your output."
+        }
+      },
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Onboarding Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [240, 0]
+    },
+    {
+      "parameters": {
+        "model": { "__rl": true, "mode": "list", "value": "gpt-4o-mini" },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [240, 220],
+      "credentials": {
+        "openAiApi": { "id": "REPLACE_ME", "name": "OpenAI account" }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false, "leftValue": "", "typeValidation": "loose" },
+          "combinator": "and",
+          "conditions": [
+            {
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "HANDOVER_REQUIRED",
+              "operator": { "type": "string", "operation": "contains" }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0005-4000-8000-000000000005",
+      "name": "KYC Needed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [500, 0]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Guardrail Scan').item.json.body.clientEmail }}",
+        "subject": "Action required: complete your identity verification",
+        "message": "={{ $json.output }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "name": "Send Handover Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [760, -120],
+      "credentials": {
+        "gmailOAuth2": { "id": "REPLACE_ME", "name": "Gmail account" }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0007-4000-8000-000000000007",
+      "name": "Continue Reply",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 120]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=Handover email sent to the client. Agent output: {{ $json.output }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0008-4000-8000-000000000008",
+      "name": "Handover Reply",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, -120]
+    }
+  ],
+  "connections": {
+    "Intake Webhook": { "main": [[{ "node": "Guardrail Scan", "type": "main", "index": 0 }]] },
+    "Guardrail Scan": { "main": [[{ "node": "Onboarding Agent", "type": "main", "index": 0 }]] },
+    "Chat Model": { "ai_languageModel": [[{ "node": "Onboarding Agent", "type": "ai_languageModel", "index": 0 }]] },
+    "Onboarding Agent": { "main": [[{ "node": "KYC Needed?", "type": "main", "index": 0 }]] },
+    "KYC Needed?": {
+      "main": [
+        [{ "node": "Send Handover Email", "type": "main", "index": 0 }],
+        [{ "node": "Continue Reply", "type": "main", "index": 0 }]
+      ]
+    },
+    "Send Handover Email": { "main": [[{ "node": "Handover Reply", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "meta": { "templateCredsSetupCompleted": false }
+}

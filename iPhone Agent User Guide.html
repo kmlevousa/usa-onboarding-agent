@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ur-Latn">
+<head>
+<meta charset="utf-8">
+<title>iPhone Agent — Mukammal User Guide</title>
+<style>
+:root{
+  --bg:#f5f5f7; --surface:#ffffff; --ink:#1d1d1f; --muted:#6e6e73;
+  --border:#d2d2d7; --accent:#0071e3; --link:#0066cc;
+  --success:#1d7a36; --danger:#c21807; --warn:#8a5a00;
+}
+*{box-sizing:border-box}
+body{font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);margin:0;font-size:13px;line-height:1.62}
+.page{max-width:820px;margin:0 auto;background:var(--surface);padding:34px 44px;box-shadow:0 1px 6px rgba(0,0,0,.08)}
+h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;margin:0 0 6px}
+h2{font-size:20px;letter-spacing:-.01em;margin:34px 0 4px;padding-top:14px;border-top:2px solid var(--accent)}
+h3{font-size:15px;margin:20px 0 4px}
+p{margin:6px 0}
+.muted{color:var(--muted)}
+.caps{font-family:ui-monospace,Consolas,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.cover{text-align:center;padding:70px 20px 40px}
+.logo{width:84px;height:84px;border-radius:22px;background:var(--accent);margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
+.logo span{color:#fff;font-size:40px;font-weight:800}
+.sub{color:var(--muted);font-size:15px}
+.step{display:flex;gap:12px;margin:12px 0}
+.step .n{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.box{border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:12px 0;background:#fbfbfd}
+.box.tip{background:#f0f7ff;border-color:#bcd9f7}
+.box.warn{background:#fff8ec;border-color:#f0dfb8}
+.box.red{background:#fff1f0;border-color:#f3c4c0}
+.box .t{font-weight:700;font-size:13px;margin-bottom:4px;display:block}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12.5px}
+th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--bg);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+code{font-family:ui-monospace,Consolas,monospace;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:1px 6px;font-size:12px;color:#234}
+.chip{display:inline-block;border-radius:999px;padding:2px 10px;font-size:11px;font-weight:600;border:1px solid transparent;vertical-align:middle}
+.chip.on{background:#e6f4ea;color:var(--success)}
+.chip.acc{background:#e4f0fc;color:var(--link)}
+.chip.warn{background:#fdf3dd;color:var(--warn)}
+.chip.bad{background:#fdebe9;color:var(--danger)}
+.chip.pl{background:#fff;border-color:var(--border);color:var(--muted)}
+.mini{display:inline-block;width:150px;border:1px solid var(--border);border-radius:14px;background:var(--bg);padding:10px;font-size:10px;vertical-align:top;margin:4px 6px 4px 0}
+.mini .lbl{font-family:ui-monospace,Consolas,monospace;font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.mini .r{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:5px 7px;margin:4px 0}
+.mini .btn{background:var(--accent);color:#fff;border-radius:999px;text-align:center;padding:4px;font-weight:700}
+ul,ol{margin:6px 0;padding-left:22px}
+li{margin:4px 0}
+.toc{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:16px 20px}
+.toc ol{margin:0}
+a{color:var(--link)}
+.foot{text-align:center;color:var(--muted);font-size:10px;margin-top:20px;letter-spacing:.06em}
+kbd{font-family:ui-monospace,Consolas,monospace;background:#fff;border:1px solid var(--border);border-bottom-width:2px;border-radius:5px;padding:1px 7px;font-size:11.5px}
+@media print{
+  body{background:#fff}
+  .page{box-shadow:none;padding:0 6px;max-width:100%}
+  h2{page-break-after:avoid}
+  .box,table,.step{page-break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+@page{size:A4;margin:14mm 12mm}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="logo"><span>A</span></div>
+    <h1>iPhone Agent</h1>
+    <p class="sub">Mukammal User Guide — Roman Urdu</p>
+    <p class="muted">USA business onboarding + personal assistant · hybrid online/offline · version V2</p>
+    <p class="muted">Guide version: 1.0 · Sep 2026</p>
+  </div>
+
+  <div class="toc">
+    <p class="caps">Is guide mein</p>
+    <ol>
+      <li>App kya hai — ek nazar mein</li>
+      <li>Pehli dafa kya set karein</li>
+      <li>Naya client ka data add karna (step-by-step)</li>
+      <li>Client par kaam — 6-step Workflow</li>
+      <li>Handover note + WhatsApp par bhejna</li>
+      <li>Assistant — online aur offline</li>
+      <li>Settings — API key, WhatsApp, notifications, data</li>
+      <li>Status chips aur ONLINE/OFFLINE ribbon</li>
+      <li>Bar-bar pooche jaane wale sawal (FAQ)</li>
+      <li>Safe-use ki 3 pakki rules</li>
+    </ol>
+  </div>
+
+  <h2 id="s1">1. App kya hai — ek nazar mein</h2>
+  <p><b>iPhone Agent</b> aap ka haath wala ops assistant hai. Do kaam ek saath karta hai:</p>
+  <ul>
+    <li><b>USA onboarding:</b> clients ke liye bank/merchant research, sign-up prefill plan, KYC handover aur website checklist</li>
+    <li><b>Personal assistant:</b> EIN, KYC, high-risk, bank shortlist jaisay sawalon ke jawab — online bhi, offline bhi</li>
+  </ul>
+  <div class="box"><span class="t">App ke 5 hisse (neeche ki tab bar)</span>
+    <span class="mini"><div class="lbl">Home</div><div class="r">Aaj ka khulasa</div><div class="r">Metrics + activity</div><div class="btn">Suggested kaam</div></span>
+    <span class="mini"><div class="lbl">Clients</div><div class="r">Data pack list</div><div class="r">+ Naya client</div><div class="r">Search</div></span>
+    <span class="mini"><div class="lbl">Workflow</div><div class="r">6-step stepper</div><div class="r">Validation→Handover</div></span>
+    <span class="mini"><div class="lbl">Assistant</div><div class="r">Chat — local/live AI</div></span>
+    <span class="mini"><div class="lbl">Settings</div><div class="r">API key · WhatsApp</div><div class="r">Notifications · Data</div></span>
+  </div>
+  <div class="box tip"><span class="t">Data kahan rehta hai?</span>Sab data sirf <b>aapke iPhone ke browser (localStorage)</b> mein rehta hai — koi server, koi company, koi cloud nahi. App band karne par kuch nahi gaya. Internet ho ya na ho — data wahi rehta hai.</div>
+
+  <h2 id="s2">2. Pehli dafa kya set karein</h2>
+  <ol>
+    <li><b>Settings</b> tab kholein (neeche right corner)</li>
+    <li><b>WhatsApp number</b> likhein — country code ke saath, jaise <code>+92 300 1234567</code> → <b>Number save karein</b> button dabayein</li>
+    <li><span class="muted">(Optional)</span> <b>Live AI</b> ke liye API base URL + API key + model likhein → <b>Save</b> → <b>Test connection</b> se check karein. Key ke baghair bhi app poora chalta hai — local brain mode mein</li>
+    <li><span class="muted">(Optional)</span> <b>Notifications</b> chip ko ON karein — lekin yad rakhein: yeh sirf installed PWA par kaam karta hai (Section 10.2 dekhein)</li>
+  </ol>
+  <div class="box tip"><span class="t">API key kya hai aur kahan se aati hai?</span>Live AI ke liye kisi OpenAI-compatible service ka key chahiye (jaise OpenAI <code>sk-…</code>, ya Zhipu/Z.ai GLM). Key sirf aapke device par rehti hai aur sirf aapke endpoint par jaati hai. Na mili ho to chain ki baat — <b>local brain</b> onboarding ke saare kaam offline kar deta hai.</div>
+
+  <h2 id="s3">3. Naya client ka data add karna</h2>
+  <p>Yeh app ka sab se important kaam hai. Poora flow:</p>
+  <div class="step"><div class="n">1</div><div><b>Clients tab kholen</b> — neeche bar mein doosra button. Koi client nahi hai to "<b>Pehla client add karein</b>" button dikhega, warna upar right mein "<b>+ Naya client add karein</b>".</div></div>
+  <div class="step"><div class="n">2</div><div>Form khulega — <b>data pack</b> ke fields bharne hain. Har field jo required hai uske aage <b>*</b> ka nishan hai.</div></div>
+  <table>
+    <tr><th>Field</th><th>Kya likhein</th><th>Example</th><th>Note</th></tr>
+    <tr><td>Legal name *</td><td>Business ka asli qanooni naam</td><td><code>Ahmed Traders LLC</code></td><td>Bank application mein yahi jaata hai</td></tr>
+    <tr><td>Entity type *</td><td>LLC / C-Corp / S-Corp / Partnership / Sole Prop</td><td><code>LLC</code></td><td>Dropdown se chunein</td></tr>
+    <tr><td>State of formation *</td><td>Jis state mein company bani hai</td><td><code>Wyoming</code></td><td>Registered agent wali state</td></tr>
+    <tr><td>EIN *</td><td>IRS ka 9-number ID</td><td><code>84-1234567</code></td><td>Format zaroori: XX-XXXXXXX — warna app error dikhayega</td></tr>
+    <tr><td>City + ZIP *</td><td>Business address</td><td><code>Sheridan</code> · <code>82801</code></td><td>Virtual office ho to bhi chalega</td></tr>
+    <tr><td>Industry / keywords *</td><td>Business kis cheez ka hai</td><td><code>ecommerce, home goods</code></td><td><b>Risk classification isi se hoti hai</b> — imandari se likhein</td></tr>
+    <tr><td>Monthly volume</td><td>Andaza — USD mein</td><td><code>25000</code></td><td>Optional, lekin research ke liye kaam aata hai</td></tr>
+    <tr><td>Owner/signer naam *</td><td>Jo application sign karega</td><td><code>Ahmed Raza</code></td><td>Sirf naam — SSN/ITIN <b>yahan kabhi nahi</b></td></tr>
+    <tr><td>Owner residency *</td><td>US citizen / resident / Non-resident</td><td><code>US resident</code></td><td>Banks filter isi par lagate hain</td></tr>
+    <tr><td>Website</td><td>Business ki site</td><td><code>https://…</code></td><td>Optional; ho to risk check behtar hota hai</td></tr>
+  </table>
+  <div class="step"><div class="n">3</div><div><b>Save — validation chalayen</b> button dabayein. App data pack ko turant check karta hai: koi field ghalat ya adhoori ho to us field ke neeche red error likha aata hai — wahi theek karein, dubara Save.</div></div>
+  <div class="step"><div class="n">4</div><div>Save hote hi app aapko us client ke <b>Workflow</b> par le jaati hai — wahan se asli kaam shuru (Section 4).</div></div>
+  <div class="box warn"><span class="t">EIN ka format ghalat ho to kya hoga?</span>App error dikhayegi: "EIN ka format XX-XXXXXXX hona chahiye". Lehaz: dashes ke saath likhein, jaise <code>84-1234567</code> — 9 numbers total, pehle 2, phir 7.</div>
+
+  <h2 id="s4">4. Client par kaam — 6-step Workflow</h2>
+  <p>Har client ka apna workflow stepper hai. App khud batata hai agla step kaunsa hai — jo step abhi karna hai us par <span class="chip acc">NEXT</span> chip hoti hai, mukammal steps par <span class="chip on">DONE</span>. Step ke andar "<b>Chalayein</b>" button dabate hi step mukammal ho jaata hai.</p>
+  <table>
+    <tr><th>#</th><th>Step</th><th>App kya karta hai</th><th>Aap kya dekhenge</th></tr>
+    <tr><td>1</td><td>Data pack validation</td><td>Pack mukammal hai ya nahi — form shuru karne se pehle</td><td>Green: "Pack mukammal hai" ya red missing-items ki list</td></tr>
+    <tr><td>2</td><td>Risk classification</td><td>Industry keywords se low/medium/high risk</td><td>Risk level + expectations (high-risk par warning)</td></tr>
+    <tr><td>3</td><td>Bank &amp; processor research</td><td>Curated shortlist: 4 banks + 4 processors, har ek par note aur <b>VERIFY</b> link</td><td>Candidate list — har link official page kholta hai; apply se pehle signer-eligibility check karein</td></tr>
+    <tr><td>4</td><td>Prefill plan (Sec 1–3)</td><td>Client ke data ko application ke section 1–3 ke map mein lagata hai</td><td>Note: Sec 1 Business, Sec 2 Ownership, Sec 3 Industry — phir <b>STOP</b> marker Sec 4 par</td></tr>
+    <tr><td>5</td><td>KYC handover note</td><td>Client ke liye mukammal note banata hai + WhatsApp/copy buttons</td><td>Tayyar note — Section 5 dekhein</td></tr>
+    <tr><td>6</td><td>Website approval checklist</td><td>Merchant review ke liye 5-item checklist</td><td>Checkboxes — har item ka status save hota hai</td></tr>
+  </table>
+  <div class="box red"><span class="t">Sab se important rule — KYC boundary</span>App Sec 1–3 (business data entry) tak kaam karti hai. <b>Sec 4 (ID upload, selfie/video verification), Sec 5 (certification/e-sign) aur final submit hamesha client khud karta hai.</b> App aapko is kaam par koi shortcut nahi deti — aur na de, yehi iski gaurant hai. SSN/ITIN, ID photos, OTP codes <b>kabhi bhi</b> app mein na likhein.</div>
+
+  <h2 id="s5">5. Handover note + WhatsApp</h2>
+  <div class="step"><div class="n">1</div><div>Client ka <b>Workflow</b> kholein → <b>Step 5 — KYC handover note</b> tak pohnchein</div></div>
+  <div class="step"><div class="n">2</div><div>Note tayyar dikhta hai — is mein hai: kitne sections mukammal, client ko kya karna hai (login, ID upload, selfie, certification), kaunsi docs tayyar rakhein, aur security reminder</div></div>
+  <div class="step"><div class="n">3</div><div><b>WhatsApp par bhejein</b> button dabayein — WhatsApp khulega aur note client ke chat mein <b>draft message</b> ki shakal mein tayyar ho jayega. Aap sirf send karein</div></div>
+  <div class="step"><div class="n">4</div><div>Client ka number pehle <b>Settings</b> mein save hona zaroori hai — warna button grey rehta hai</div></div>
+  <div class="box tip"><span class="t">Note ka shape (example)</span>
+  <p style="font-size:12px">Ahmed Traders LLC — Mercury<br>Form details Sec 1–3 tak mukammal hain (business, ownership, industry &amp; volume).<br>Ab aap ke kaam (10–15 min): 1) Login karein… 2) Sec 4 — photo ID upload + selfie 3) Sec 5 — certification khud tick karein. Docs tayyar rakhein: photo ID, proof of address. <b>Zaroori: SSN/ID/OTP chat mein kabhi na bhejein.</b></p></div>
+  <p><b>Copy button</b> note ko clipboard par copy karta hai — WhatsApp ke ilawa email ya kisi bhi channel mein bhej sakte hain.</p>
+
+  <h2 id="s6">6. Assistant — online aur offline</h2>
+  <p>Assistant (4th tab) ek chat hai jo do dimaag chalaati hai — upar chip dikhati hai kaunsa chal raha hai:</p>
+  <table>
+    <tr><th>Chip</th><th>Matlab</th><th>Jawab kahan se</th></tr>
+    <tr><td><span class="chip acc">LIVE AI</span></td><td>Net + API key set hai</td><td>Aapke endpoint ka model — naye sawal, deeper jawab</td></tr>
+    <tr><td><span class="chip pl">LOCAL BRAIN</span></td><td>Net hai lekin key nahi, ya bilkul offline</td><td>App ke andar ka embedded knowledge — EIN, KYC, risk, banks, checklist</td></tr>
+  </table>
+  <p>Likhte hi kya karein: neeche box mein sawal likhein → <b>send</b> (upar arrow). Kuch ready sawal chips ki shakal mein bhi hain — tap karein to seedha jawab. Live AI fail ho (network ya key ka masla) to app khud <b>local brain se jawab de kar</b> aage kaam chala leti hai — aap ka likha hua input mehfooz rehta hai.</p>
+
+  <h2 id="s7">7. Settings — sab options</h2>
+  <table>
+    <tr><th>Option</th><th>Kaise</th></tr>
+    <tr><td>AI endpoint (base URL + key + model)</td><td>Save → Test connection. Key device par hi rehti hai.</td></tr>
+    <tr><td>WhatsApp number</td><td>Country code ke saath. Handover note isi par jaata hai.</td></tr>
+    <tr><td>Notifications</td><td>Task-complete alerts. Installed PWA (iOS 16.4+) par hi milte hain.</td></tr>
+    <tr><td>Data export</td><td>Saare clients ka JSON clipboard par — <b>API key shamil nahi hoti</b> (suraksha).</td></tr>
+    <tr><td>Clear data</td><td>Sab delete — confirm popup ke baad. Wapas nahi aata, soch ke karein.</td></tr>
+  </table>
+
+  <h2 id="s8">8. Status chips aur ribbon</h2>
+  <table>
+    <tr><th>Chip</th><th>Matlab</th><th>Agla kaam</th></tr>
+    <tr><td><span class="chip warn">PACK INCOMPLETE</span></td><td>Data pack adhoora</td><td>Client khol kar Workflow step 1 dekhein — missing fields list mein hain</td></tr>
+    <tr><td><span class="chip bad">HIGH RISK</span></td><td>High-risk niche mili (CBD, dropshipping, crypto, gambling waghera)</td><td>Expectations pehle client ko bata dein — approval guarantee nahi</td></tr>
+    <tr><td><span class="chip acc">KYC PENDING</span></td><td>Data mukammal, handover abhi nahi bheja</td><td>Workflow step 5 → WhatsApp note</td></tr>
+    <tr><td><span class="chip on">READY</span></td><td>Saare 6 steps mukammal</td><td>Agle client par, ya Assistant se research</td></tr>
+  </table>
+  <p><b>Top ribbon:</b> <span class="chip on">ONLINE · LIVE AI</span> = net + key; <span class="chip acc">ONLINE · LOCAL BRAIN</span> = net par key nahi; <span class="chip warn">OFFLINE · LOCAL BRAIN</span> = net nahi — app phir bhi chalti hai.</p>
+
+  <h2 id="s9">9. FAQ — bar-bar pooche sawal</h2>
+  <h3>Naya client ka data add karne mein koi shortcut?</h3>
+  <p>Home screen ke suggestion card se bhi seedha ja sakte hain. Data pack jitna mukammal hoga, workflow utna smooth — adhoore pack par validation hi ruk jaati hai (yeh jaan boojh kar hai).</p>
+  <h3>Internet band ho jaye to kya hota hai?</h3>
+  <p>Kuch nahi hota — clients, steps, chat sab local rehta hai. Risk check, prefill plan, handover note aur checklist sab offline chalti hain. Net wapas aate hi ribbon update ho jaata hai.</p>
+  <h3>Data kabhi gayab ho sakta hai?</h3>
+  <p>Browser ka data clear kiya jaye ya "Clear data" dabaya jaye to jaata hai. Is liye behtar hai hafta-war <b>Data export</b> kar ke JSON apne paas rakhna.</p>
+  <h3>Kya main ek hi app par kai clients chala sakta hoon?</h3>
+  <p>Haan — koi limit nahi. Har client ka apna workflow aur progress alag save rehta hai.</p>
+  <h3>Client kisi aur shahar/country mein hai to?</h3>
+  <p>Koi farq nahi — onboarding USA business ka hai, client duniya mein kahin bhi ho sakta hai. Bas signer ki residency field sahi bharein — banks ka filter isi par chalta hai.</p>
+  <h3>Live AI ka jawab ghalat lagta hai to?</h3>
+  <p>AI jawab "verify current official source" ki taakid ke saath deta hai. Bank/processor policies aksar badalti hain — koi bhi decision official page (VERIFY links) dekh kar lein.</p>
+
+  <h2 id="s10">10. Safe-use ki 3 pakki rules</h2>
+  <div class="box red"><span class="t">Rule 1 — Sensitive data kabhi app mein nahi</span>SSN, ITIN, passport/ID photos, selfies, bank passwords, OTP — yeh sirf client khud bank/processor ke official portal mein daalta hai. Na chat mein, na client form mein, na Settings mein.</div>
+  <div class="box warn"><span class="t">Rule 2 — Attestation aur submit hamesha client ka</span>App data entry tak jaanti hai (Sec 1–3). "I certify", Terms of Service, e-sign, final Submit — yeh client ke apne kaam hain. App is liye Sec 4 par khud ruk jaati hai.</div>
+  <div class="box tip"><span class="t">Rule 3 — Approval kabhi guarantee nahi</span>Koi bhi bank/processor approval ya fees ki zuban na de. High-risk client ko pehle hi saaf bata dein: reserves, lambi underwriting, mehdud options mumkin hain.</div>
+
+  <p class="foot">IPHONE AGENT · USER GUIDE V1.0 · APP V2 · ROMAN URDU EDITION</p>
+</div>
+</body>
+</html>

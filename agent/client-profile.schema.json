@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "client-profile.schema.json",
+  "title": "USA Business Onboarding — Client Data Pack",
+  "description": "Structured client profile consumed by the onboarding agent. Fields marked x-client-only must be filled by the client inside official portals only — never by the agent.",
+  "type": "object",
+  "required": ["business", "industry", "owners", "contact", "consents"],
+  "properties": {
+    "business": {
+      "type": "object",
+      "required": ["legalName", "entityType", "stateOfFormation", "ein", "businessAddress"],
+      "properties": {
+        "legalName": { "type": "string" },
+        "dba": { "type": "string" },
+        "entityType": {
+          "type": "string",
+          "enum": ["LLC", "C-Corp", "S-Corp", "Partnership", "Sole Proprietorship"]
+        },
+        "stateOfFormation": { "type": "string" },
+        "formationDate": { "type": "string", "format": "date" },
+        "ein": {
+          "type": "string",
+          "pattern": "^\\d{2}-\\d{7}$",
+          "description": "EIN only. Never place an SSN or ITIN here."
+        },
+        "einLetterAvailable": {
+          "type": "boolean",
+          "description": "Is the CP 575 or 147C letter available?"
+        },
+        "businessAddress": {
+          "type": "object",
+          "required": ["line1", "city", "state", "zip"],
+          "properties": {
+            "line1": { "type": "string" },
+            "line2": { "type": "string" },
+            "city": { "type": "string" },
+            "state": { "type": "string" },
+            "zip": { "type": "string" },
+            "isResidential": { "type": "boolean" },
+            "isVirtualOffice": { "type": "boolean" }
+          }
+        },
+        "registeredAgent": { "type": "string" },
+        "website": { "type": "string" }
+      }
+    },
+    "industry": {
+      "type": "object",
+      "required": ["description", "salesChannels"],
+      "properties": {
+        "description": { "type": "string" },
+        "nicheKeywords": { "type": "array", "items": { "type": "string" } },
+        "salesChannels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["online", "retail", "wholesale", "services", "mobile", "other"]
+          }
+        },
+        "expectedMonthlyVolumeUsd": { "type": "number", "minimum": 0 },
+        "averageTicketUsd": { "type": "number", "minimum": 0 },
+        "physicalProducts": { "type": "boolean" }
+      }
+    },
+    "owners": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["fullName", "ownershipPct", "residency", "signer"],
+        "properties": {
+          "fullName": { "type": "string" },
+          "ownershipPct": { "type": "number", "minimum": 0, "maximum": 100 },
+          "residency": {
+            "type": "string",
+            "enum": ["US citizen", "US resident", "Non-resident"],
+            "description": "Drives the signer-eligibility filter for banks and processors."
+          },
+          "hasItin": { "type": "boolean" },
+          "signer": { "type": "boolean" },
+          "x-client-only": {
+            "type": "object",
+            "description": "SSN/ITIN and ID documents are entered by the client directly in the provider portal. The agent never collects them.",
+            "properties": {
+              "ssnOrItin": { "type": "string", "description": "NEVER COLLECT — client-only field." },
+              "idDocument": { "type": "string", "description": "NEVER COLLECT — client-only field." }
+            }
+          }
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "required": ["businessPhone", "businessEmail"],
+      "properties": {
+        "businessPhone": { "type": "string" },
+        "businessEmail": { "type": "string" },
+        "supportEmail": { "type": "string" }
+      }
+    },
+    "consents": {
+      "type": "object",
+      "required": ["dataUseAuthorized", "prefillAuthorized"],
+      "properties": {
+        "dataUseAuthorized": {
+          "type": "boolean",
+          "description": "Client authorized this agent to use this data for applications."
+        },
+        "prefillAuthorized": {
+          "type": "boolean",
+          "description": "Client authorized prefill of sign-up forms (data entry only, no attestations)."
+        },
+        "authorizedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "x-never-collect": {
+      "type": "array",
+      "description": "These fields must NEVER be present in a data pack. If supplied, the agent must refuse and purge.",
+      "items": {
+        "type": "string",
+        "enum": ["ssn", "itin", "passportImage", "idPhoto", "selfie", "bankPassword", "otp"]
+      },
+      "default": ["ssn", "itin", "passportImage", "idPhoto", "selfie", "bankPassword", "otp"]
+    }
+  }
+}

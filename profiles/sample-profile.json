@@ -1,0 +1,49 @@
+{
+  "business": {
+    "legalName": "Bluebird Trading LLC",
+    "dba": "Bluebird Home Goods",
+    "entityType": "LLC",
+    "stateOfFormation": "Wyoming",
+    "formationDate": "2026-04-14",
+    "ein": "84-1234567",
+    "einLetterAvailable": true,
+    "businessAddress": {
+      "line1": "1400 Commerce Ave",
+      "line2": "Suite 210",
+      "city": "Sheridan",
+      "state": "WY",
+      "zip": "82801",
+      "isResidential": false,
+      "isVirtualOffice": true
+    },
+    "registeredAgent": "Wyoming Registered Agents LLC",
+    "website": "https://bluebirdhomegoods.example"
+  },
+  "industry": {
+    "description": "Online retail of home goods and kitchen accessories",
+    "nicheKeywords": ["ecommerce", "home goods", "retail"],
+    "salesChannels": ["online"],
+    "expectedMonthlyVolumeUsd": 25000,
+    "averageTicketUsd": 65,
+    "physicalProducts": true
+  },
+  "owners": [
+    {
+      "fullName": "Sample Owner",
+      "ownershipPct": 100,
+      "residency": "US resident",
+      "hasItin": true,
+      "signer": true
+    }
+  ],
+  "contact": {
+    "businessPhone": "+1-555-0100",
+    "businessEmail": "ops@bluebirdhomegoods.example",
+    "supportEmail": "support@bluebirdhomegoods.example"
+  },
+  "consents": {
+    "dataUseAuthorized": true,
+    "prefillAuthorized": true,
+    "authorizedAt": "2026-09-07T12:00:00Z"
+  }
+}
