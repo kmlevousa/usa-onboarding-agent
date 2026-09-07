@@ -1,11 +1,11 @@
 /* iPhone Agent — offline shell cache (activates only on HTTPS hosting, e.g. GitHub Pages) */
-const CACHE = "iphone-agent-v3";
+const CACHE = "iphone-agent-v4";
 const ASSETS = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
-  "./V3%20iPhone%20Agent-Interactive%20Prototype.html",
-  "./V3%20iPhone%20Agent-Infinite%20Canvas.html",
+  "./V4%20iPhone%20Agent-Interactive%20Prototype.html",
+  "./V4%20iPhone%20Agent-Infinite%20Canvas.html",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png"
